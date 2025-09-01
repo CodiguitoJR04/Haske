@@ -1,0 +1,561 @@
+ /* Variables de identidad de marca */
+        :root {
+            --color-primario: #007bff;
+            --color-secundario: #6c757d;
+            --color-acento: #28a745;
+            --fuente-principal: 'Yeseva One', sans-serif;
+            --fuente-secundaria: 'Arial', sans-serif;
+            --fuente-slide: 'Roboto', sans-serif;
+        }
+
+        body {
+            font-family: var(--fuente-secundaria);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header y Navegación - Optimizado para SEO */
+        .nav-custom {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            right: 0;
+            height: 10vh;
+        }
+
+        .nav-list .nav-link {
+            color: #31644c !important;
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-list .nav-link:hover,
+        .nav-list .nav-link.active {
+            color: #9eb246 !important;
+        }
+
+        .nav-list .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #9eb246;
+            transition: width 0.3s ease;
+        }
+
+        .nav-list .nav-link:hover::after,
+        .nav-list .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Carrusel - Optimizado para SEO y rendimiento */
+        .carousel-item {
+            height: 90vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .item-custom {
+            background-color: rgba(0, 0, 0, 0.6);
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .conten-slide-custom {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: 10%;
+        }
+
+        .title-slide-card {
+            font-family: "Shrikhand", serif;
+            color: #31644c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .btn-custom {
+            background-color: #9eb246;
+            color: white;
+            font-weight: bold;
+            border-radius: 30px;
+            padding: 12px 30px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #7f9337;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sección Nosotros - MODIFICADA según imagen 1 */
+        .section-nosotros {
+            width: 100% !important;
+            min-height: 100vh !important;
+            background-color: #f8f9fa !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 3rem 0;
+        }
+
+        .custom-card {
+            background-color: #fff !important;
+            border-radius: 10px !important;
+            padding: 20px !important;
+            text-align: center !important;
+            position: relative !important;
+            height: 70vh;
+            width: 100%;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            flex-direction: column;
+        }
+
+        .custom-card > h3, .custom-card > p, .custom-card > .add-btn {
+            z-index: 50 !important;
+            color: #fff !important; /* Cambiado para mejor contraste */
+            position: relative;
+        }
+
+        .img-description {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 10px !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+            position: absolute !important; /* Cambiado de absolute para responsividad */
+            z-index: 30 !important;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* margin-bottom: 1rem; */
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        /* Estilos para el botón de volver al inicio */
+        .back-to-top {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 100px;
+            right: 40px;
+            background-color: #31644c;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #9eb246;
+            transform: scale(1.1);
+        }
+        
+        /* Asegurar que el navbar se mantenga encima del contenido */
+        .nav-custom {
+            z-index: 1030;
+        }
+        
+        /* Ajustar el contenido para que no quede oculto detrás del navbar fijo */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .container-icon {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: #283c28;
+            margin: auto;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .container-icon img {
+            width: 80%;
+            height: 80%;
+            object-fit: cover;
+        }
+
+
+        /* Sección Servicios - MODIFICADA según imagen 2 */
+        .section-servicios {
+            width: 100% !important;
+            min-height: 100vh !important;
+            background-color: rgb(40, 60, 40, 0.6) !important;
+            position: relative !important;
+            z-index: 50;
+            padding: 3rem 0;
+        }
+
+        .servicios-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .servicios-header h2 {
+            font-family: "Shrikhand", serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .servicios-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .servicio-card {
+            position: relative;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .servicio-imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .servicio-card:hover .servicio-imagen {
+            transform: scale(1.05);
+        }
+
+        .servicio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .servicio-card:hover .servicio-overlay {
+            transform: translateY(0);
+        }
+
+        .servicio-titulo {
+            font-family: "Shrikhand", serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .servicio-boton {
+            margin-top: 1rem;
+        }
+
+        /* Modal de Servicio */
+        .servicio-modal-content {
+            background: rgba(49, 100, 76, 0.95);
+            color: white;
+            border-radius: 15px;
+            border: none;
+        }
+
+        .servicio-modal-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+        }
+
+        .servicio-modal-title {
+            font-family: "Shrikhand", serif;
+            color: #9eb246;
+        }
+
+        .servicio-modal-body {
+            padding: 2rem;
+        }
+
+        .servicio-modal-imagen {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        /* Sección Contacto - MODIFICADA según imagen 3 */
+        .section-contact {
+            width: 100% !important;
+            min-height: 100vh !important;
+            background-color: #f8f9fa !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 5rem 0;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact-header h2 {
+            font-family: "Shrikhand", serif;
+            font-size: 2.8rem;
+            color: #31644c;
+            margin-bottom: 1rem;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-details h3 {
+            font-family: "Shrikhand", serif;
+            color: #31644c;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: #31644c;
+            width: 25px;
+            text-align: center;
+        }
+
+        .map-section {
+            margin-top: 2rem;
+        }
+
+        .map-section h3 {
+            font-family: "Shrikhand", serif;
+            color: #31644c;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            font-family: "Shrikhand", serif;
+            color: #31644c;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #31644c;
+            box-shadow: 0 0 0 0.2rem rgba(49, 100, 76, 0.25);
+        }
+
+        .submit-btn {
+            background: #31644c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .submit-btn:hover {
+            background: #9eb246;
+            transform: translateY(-2px);
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 992px) {
+            .nav-list {
+                flex-direction: column;
+                background-color: rgba(0, 0, 0, 0.8);
+                padding: 1rem !important;
+                border-radius: 10px;
+            }
+            
+            .carousel-item, .item-custom {
+                height: 70vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-item, .item-custom {
+                height: 60vh;
+            }
+            
+            .title-slide-card {
+                font-size: 24px;
+            }
+            
+            .conten-slide-custom p {
+                font-size: 14px;
+            }
+            
+            .nosotros-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .servicios-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-header h2 {
+                font-size: 2.2rem;
+            }
+            .nav-custom {
+                position: relative !important;
+                width: 100%;
+                left: 0;
+                right: 0;
+                height: auto;
+                /* background-color: rgba(255, 255, 255, 0.95); */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-item, .item-custom {
+                height: 50vh;
+            }
+            
+            .btn-custom {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .nosotros-content,
+            .servicio-card,
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
