@@ -10,47 +10,46 @@ const btnRegresar = (() => {
 
 
 function cambiarTexto(tipo) {
-  const titulo = document.getElementById("nosotros-titulo");
-  const texto = document.getElementById("nosotros-texto");
-  const contenedorBTN = document.querySelector(".add-btn"); // primer .add-btn
+            const titulo = document.getElementById("nosotros-titulo");
+            const texto = document.getElementById("nosotros-texto");
+            const contenedorBTN = document.querySelector(".add-btn"); // primer .add-btn
 
-  if (!contenedorBTN) {
-    console.warn("No existe un elemento con la clase .add-btn");
-    return;
-  }
+            if (!contenedorBTN) {
+                console.warn("No existe un elemento con la clase .add-btn");
+                return;
+            }
 
-  switch (tipo) {
-    case "mision":
-      titulo.textContent = "Nuestra Misión";
-      texto.textContent = "Nuestra misión es proporcionar asesoría legal estratégica que anticipe riesgos, resuelva conflictos y cree valor tangible para empresas y emprendedores, siempre con los más altos estándares éticos profesionales.";
-      if (!contenedorBTN.contains(btnRegresar)) {
-        contenedorBTN.appendChild(btnRegresar);
-      }
-      break;
+            switch (tipo) {
+                case "mision":
+                    titulo.textContent = "Nuestra Misión";
+                    texto.textContent = "Nuestra misión es proporcionar asesoría legal estratégica que anticipe riesgos, resuelva conflictos y cree valor tangible para empresas y emprendedores, siempre con los más altos estándares éticos profesionales. Combinamos expertise legal y contable para ofrecer soluciones integrales que realmente impulsan el crecimiento de tu organización.";
+                    if (!contenedorBTN.contains(btnRegresar)) {
+                        contenedorBTN.appendChild(btnRegresar);
+                    }
+                    break;
 
-    case "vision":
-      titulo.textContent = "Nuestra Visión";
-      texto.textContent = "Ser el despacho de abogados de referencia para pymes y corporativos en México, reconocido por nuestra capacidad para transformar el complejo panorama legal en ventajas competitivas para nuestros clientes.";
-      // Si quieres ocultar el botón aquí:
-      if (!contenedorBTN.contains(btnRegresar)) {
-        contenedorBTN.appendChild(btnRegresar);
-      }
-      break;
+                case "vision":
+                    titulo.textContent = "Nuestra Visión";
+                    texto.textContent = "Ser el despacho de referencia para pymes y corporativos en México, reconocido por nuestra capacidad para transformar el complejo panorama legal-contable en ventajas competitivas para nuestros clientes. Buscamos ser reconocidos como líderes en asesoría jurídica corporativa con enfoque estratégico y resultados comprobables.";
+                    if (!contenedorBTN.contains(btnRegresar)) {
+                        contenedorBTN.appendChild(btnRegresar);
+                    }
+                    break;
 
-    case "valores":
-      titulo.textContent = "Nuestros Valores";
-      texto.textContent = "Excelencia jurídica, integridad inquebrantable, innovación en soluciones legales y compromiso absoluto con los resultados de nuestros clientes.";
-      if (!contenedorBTN.contains(btnRegresar)) {
-        contenedorBTN.appendChild(btnRegresar);
-      }
-      break;
+                case "valores":
+                    titulo.textContent = "Nuestros Valores";
+                    texto.textContent = "Excelencia jurídica, integridad inquebrantable, innovación en soluciones legales y compromiso absoluto con los resultados de nuestros clientes. Valoramos el trabajo en equipo, la especialización continua en derecho corporativo, laboral, fiscal y de seguridad social, y la aplicación del talento contable a los hechos jurídicos.";
+                    if (!contenedorBTN.contains(btnRegresar)) {
+                        contenedorBTN.appendChild(btnRegresar);
+                    }
+                    break;
 
-    default:
-      titulo.textContent = "Haske - Despacho de Abogados con Visión Integral";
-      texto.textContent = "Somos un bufete jurídico mexicano especializado en derecho corporativo, laboral y mercantil. Combinamos expertise legal con comprensión empresarial para ofrecer soluciones jurídicas que realmente impulsan el crecimiento de tu organización.";
-      if (btnRegresar.parentNode) btnRegresar.remove();
-  }
-}
+                default:
+                    titulo.textContent = "Haske - Despacho Legal y Contable con Visión Integral";
+                    texto.textContent = "En Haske, combinamos materia legal y contable con comprensión empresarial para ofrecer soluciones jurídicas que realmente impulsan el crecimiento de tu organización. Somos un bufete Legal/Contable mexicano especializado en derecho corporativo, laboral, fiscal y de seguridad social; combinamos el talento contable aplicado a los hechos jurídicos para dar una solución correcta a las necesidades de tu empresa.";
+                    if (btnRegresar.parentNode) btnRegresar.remove();
+            }
+        }
 
 
         
@@ -170,3 +169,37 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
 });
+
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener los datos del formulario
+            const datos = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                servicio: document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text,
+                mensaje: document.getElementById('mensaje').value
+            };
+            
+            // Validar los datos
+            if (!datos.nombre || !datos.email || !datos.servicio || !datos.mensaje) {
+                mostrarAlerta('Por favor, complete todos los campos obligatorios.', 'danger');
+                return;
+            }
+            
+            // Enviar por WhatsApp
+            enviarWhatsApp(datos);
+            
+            // Enviar por correo electrónico
+            setTimeout(() => {
+                enviarCorreo(datos);
+            }, 1000);
+            
+            // Mostrar mensaje de éxito
+            mostrarAlerta('¡Mensaje enviado con éxito! Se abrirán WhatsApp y su cliente de correo.', 'success');
+            
+            // Limpiar el formulario
+            this.reset();
+        });
