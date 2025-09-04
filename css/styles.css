@@ -436,10 +436,7 @@
             transform: translateY(-5px);
         }
 
-        span{
-            background-color: transparent;
-            color: transparent;
-        }
+        
         span img{
             width: 100%;
             height: 100px;
