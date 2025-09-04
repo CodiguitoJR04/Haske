@@ -172,34 +172,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Obtener los datos del formulario
-            const datos = {
-                nombre: document.getElementById('nombre').value,
-                email: document.getElementById('email').value,
-                telefono: document.getElementById('telefono').value,
-                servicio: document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text,
-                mensaje: document.getElementById('mensaje').value
-            };
-            
-            // Validar los datos
-            if (!datos.nombre || !datos.email || !datos.servicio || !datos.mensaje) {
-                mostrarAlerta('Por favor, complete todos los campos obligatorios.', 'danger');
-                return;
-            }
-            
-            // Enviar por WhatsApp
-            enviarWhatsApp(datos);
-            
-            // Enviar por correo electrónico
-            setTimeout(() => {
-                enviarCorreo(datos);
-            }, 1000);
-            
-            // Mostrar mensaje de éxito
-            mostrarAlerta('¡Mensaje enviado con éxito! Se abrirán WhatsApp y su cliente de correo.', 'success');
-            
-            // Limpiar el formulario
-            this.reset();
-        });
+    e.preventDefault();
+    
+    // Obtener los datos del formulario
+    const datos = {
+        nombre: document.getElementById('nombre').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value,
+        servicio: document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text,
+        mensaje: document.getElementById('mensaje').value
+    };
+    
+    // Validar los datos
+    if (!datos.nombre || !datos.email || !datos.servicio || !datos.mensaje) {
+        mostrarAlerta('Por favor, complete todos los campos obligatorios.', 'danger');
+        return;
+    }
+    
+    // Enviar por WhatsApp
+    enviarWhatsApp(datos);
+    
+    // Enviar por correo electrónico
+    setTimeout(() => {
+        enviarCorreo(datos);
+    }, 1000);
+    
+    // Mostrar mensaje de éxito
+    mostrarAlerta('¡Mensaje enviado con éxito! Se abrirán WhatsApp y su cliente de correo.', 'success');
+    
+    // Limpiar el formulario
+    this.reset();
+});
+
+// Función para enviar WhatsApp
+function enviarWhatsApp(datos) {
+    const numero = "525522207515"; // <-- Cambia por tu número (ej: México 52 + número)
+    const mensaje = `Hola, soy ${datos.nombre}.
+Email: ${datos.email}
+Teléfono: ${datos.telefono}
+Servicio: ${datos.servicio}
+Mensaje: ${datos.mensaje}`;
+    
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
+// Función para enviar correo
+function enviarCorreo(datos) {
+    const destinatario = "direccion@haskeressources.com"; // <-- Cambia por tu correo
+    const asunto = "Nuevo mensaje de contacto";
+    const cuerpo = `Nombre: ${datos.nombre}
+Email: ${datos.email}
+Teléfono: ${datos.telefono}
+Servicio: ${datos.servicio}
+Mensaje: ${datos.mensaje}`;
+    
+    const mailto = `mailto:${destinatario}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    window.open(mailto, '_blank');
+}
+
+// Función para mostrar alertas (puedes personalizarla con Bootstrap o simple alert)
+function mostrarAlerta(mensaje, tipo) {
+    alert(mensaje); // <-- Aquí lo básico, pero puedes reemplazarlo con un alert de Bootstrap
+}
